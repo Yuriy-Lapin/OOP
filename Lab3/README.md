@@ -14,15 +14,15 @@
 ### Перша програма на ООП
 
 ```python
-
 class MyName:
     """Опис класу / Документація
     """
-    total_names = 0 #Class Variable
+    total_names = 0  # Class Variable
 
     def __init__(self, name=None) -> None:
-        self.name = name if name is not None else self.anonymous_user().name #Class attributes / Instance variables
-        MyName.total_names += 1 #modify class variable
+        # Class attributes / Instance variables
+        self.name = name if name is not None else self.anonymous_user().name
+        MyName.total_names += 1  # modify class variable
         self.my_id = self.total_names
 
     @property
@@ -56,23 +56,31 @@ class MyName:
         """
         return f"You say: {message}"
 
+    def name_length(self):
+        return len(self.name)
+
 
 print("Let's Start!")
 
-names = ("Bohdan", "Marta", None)
+names = ("Bohdan", "Marta", None, "Yuriy")
 all_names = {name: MyName(name) for name in names}
 
 for name, me in all_names.items():
-    print(f"""{">*<"*20}
+    print(f"""\n{">*<"*20}
 This is object: {me}
 This is object attribute: {me.name} / {me.my_id}
 This is {type(MyName.whoami)}: {me.whoami} / {me.my_email}
 This is {type(me.create_email)} call: {me.create_email()}
-This is static {type(MyName.say_hello)} with defaults: {me.say_hello()}
+This is static {type(MyName.say_hello)} with defaults: {me.say_hello("aaaaaaa")}
 This is class variable {type(MyName.total_names)}: from class {MyName.total_names} / from object {me.total_names}
-{"<*>"*20}""")
+Lenght name = {me.name_length()}
+We are done. We create {me.total_names} names! ??? Why {MyName.total_names}?
+{"<*>"*20}
+""")
 
-print(f"We are done. We create {me.total_names} names! ??? Why {MyName.total_names}?")
+print(
+    f"We are done. We create {me.total_names} names! ??? Why {MyName.total_names}?")
+
 
 ```
 
@@ -82,31 +90,55 @@ print(f"We are done. We create {me.total_names} names! ??? Why {MyName.total_nam
 
 ```
 Let's Start!
+
 >*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<
-This is object: <__main__.MyName object at 0x000002025595B8E0>
+This is object: <__main__.MyName object at 0x000001928467ADD0>
 This is object attribute: Bohdan / 1
 This is <class 'property'>: My name is Bohdan / Bohdan@itcollege.lviv.ua
 This is <class 'method'> call: Bohdan@itcollege.lviv.ua
-This is static <class 'function'> with defaults: You say: Hello to everyone!
-This is class variable <class 'int'>: from class 4 / from object 4
+This is static <class 'function'> with defaults: You say: aaaaaaa
+This is class variable <class 'int'>: from class 5 / from object 5
+Lenght name = 6
+We are done. We create 5 names! ??? Why 5?
 <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
+
+
 >*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<
-This is object: <__main__.MyName object at 0x000002025595ADD0>
+This is object: <__main__.MyName object at 0x0000019284679D20>
 This is object attribute: Marta / 2
 This is <class 'property'>: My name is Marta / Marta@itcollege.lviv.ua
 This is <class 'method'> call: Marta@itcollege.lviv.ua
-This is static <class 'function'> with defaults: You say: Hello to everyone!
-This is class variable <class 'int'>: from class 4 / from object 4
+This is static <class 'function'> with defaults: You say: aaaaaaa
+This is class variable <class 'int'>: from class 5 / from object 5
+Lenght name = 5
+We are done. We create 5 names! ??? Why 5?
 <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
+
+
 >*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<
-This is object: <__main__.MyName object at 0x0000020255959D20>
+This is object: <__main__.MyName object at 0x0000019284679C00>
 This is object attribute: Anonymous / 4
 This is <class 'property'>: My name is Anonymous / Anonymous@itcollege.lviv.ua
 This is <class 'method'> call: Anonymous@itcollege.lviv.ua
-This is static <class 'function'> with defaults: You say: Hello to everyone!
-This is class variable <class 'int'>: from class 4 / from object 4
+This is static <class 'function'> with defaults: You say: aaaaaaa
+This is class variable <class 'int'>: from class 5 / from object 5
+Lenght name = 9
+We are done. We create 5 names! ??? Why 5?
 <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
-We are done. We create 4 names! ??? Why 4?
+
+
+>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<>*<
+This is object: <__main__.MyName object at 0x00000192846B49A0>
+This is object attribute: Yuriy / 5
+This is <class 'property'>: My name is Yuriy / Yuriy@itcollege.lviv.ua
+This is <class 'method'> call: Yuriy@itcollege.lviv.ua
+This is static <class 'function'> with defaults: You say: aaaaaaa
+This is class variable <class 'int'>: from class 5 / from object 5
+Lenght name = 5
+We are done. We create 5 names! ??? Why 5?
+<*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
+
+We are done. We create 5 names! ??? Why 5?
 ```
 
 - Відповіді на запитання:
