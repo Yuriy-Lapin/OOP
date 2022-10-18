@@ -279,15 +279,182 @@ Proceed (Y/n)? y
 
 ### Робота у віртуальному середовищі
 
-- d
+- Я ввів по черзі запропоновані команди, але деякі з них видавали помилку
+
+```py
+python - m venv ./my_env
+source my_env/Scripts/activate
+pip install requests
+deactivate
+pip show requests
+```
+
+- Команда `pip show requests` вивела опис бібліотеки. Вона це вивела бо так пише в [доках )](https://pip.pypa.io/en/stable/cli/pip_show/)
+
+```
+Name: requests
+Version: 2.28.1
+Summary: Python HTTP for Humans.
+Home-page: https://requests.readthedocs.io
+Author: Kenneth Reitz
+Author-email: me@kennethreitz.org
+License: Apache 2.0
+Location: d:\software\programs\python3\lib\site-packages
+Requires: certifi, charset-normalizer, idna, urllib3
+Required-by: cfscrape, openai, shodan, webdriver-manager
+```
+
+---
+
+### Робота з Pipenv
+
+- Я інсталював піпенв бібліотеку, та написав `pipenv --help`. Ось що вивелось:
+
+```
+Usage: pipenv [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --where                         Output project home information.
+  --venv                          Output virtualenv information.
+  --py                            Output Python interpreter information.
+  --envs                          Output Environment Variable options.
+  --rm                            Remove the virtualenv.
+  --bare                          Minimal output.
+  --man                           Display manpage.
+  --support                       Output diagnostic information for use in
+                                  GitHub issues.
+  --site-packages / --no-site-packages
+                                  Enable site-packages for the virtualenv.
+                                  [env var: PIPENV_SITE_PACKAGES]
+  --python TEXT                   Specify which version of Python virtualenv
+                                  should use.
+  --three                         Use Python 3 when creating virtualenv.
+                                  Deprecated
+  --clear                         Clears caches (pipenv, pip).  [env var:
+                                  PIPENV_CLEAR]
+  -q, --quiet                     Quiet mode.
+  -v, --verbose                   Verbose mode.
+  --pypi-mirror TEXT              Specify a PyPI mirror.
+  --version                       Show the version and exit.
+  -h, --help                      Show this message and exit.
+
+
+Usage Examples:
+   Create a new project using Python 3.7, specifically:
+   $ pipenv --python 3.7
+
+   Remove project virtualenv (inferred from current directory):
+   $ pipenv --rm
+
+   Install all dependencies for a project (including dev):
+   $ pipenv install --dev
+
+   Create a lockfile containing pre-releases:
+   $ pipenv lock --pre
+
+   Show a graph of your installed dependencies:
+   $ pipenv graph
+
+   Check your installed dependencies for security vulnerabilities:
+   $ pipenv check
+
+   Install a local setup.py into your virtual environment/Pipfile:
+   $ pipenv install -e .
+
+   Use a lower-level pip command:
+   $ pipenv run pip freeze
+
+Commands:
+  check         Checks for PyUp Safety security vulnerabilities and against
+                PEP 508 markers provided in Pipfile.
+  clean         Uninstalls all packages not specified in Pipfile.lock.
+  graph         Displays currently-installed dependency graph information.
+  install       Installs provided packages and adds them to Pipfile, or (if no
+                packages are given), installs all packages from Pipfile.
+  lock          Generates Pipfile.lock.
+  open          View a given module in your editor.
+  requirements  Generate a requirements.txt from Pipfile.lock.
+  run           Spawns a command installed into the virtualenv.
+  scripts       Lists scripts in current environment config.
+  shell         Spawns a shell within the virtualenv.
+  sync          Installs all packages specified in Pipfile.lock.
+  uninstall     Uninstalls a provided package and removes it from Pipfile.
+  update        Runs lock, then sync.
+  verify        Verify the hash in Pipfile.lock is up-to-date.
+```
+
+- Я ввів код з прикладу і запустив з терміналу VS Code. У відповідь я отримав код сторінки
+  Це не весь код, для прикладу я вставив тільки до закриваючого тегу `head`
+
+```text
+b'<!DOCTYPE html>'
+b'<html lang="en">'
+b''
+b'<head>'
+b'    <meta charset="UTF-8">'
+b'    <title>httpbin.org</title>'
+b'    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700"'
+b'        rel="stylesheet">'
+b'    <link rel="stylesheet" type="text/css" href="/flasgger_static/swagger-ui.css">'
+b'    <link rel="icon" type="image/png" href="/static/favicon.ico" sizes="64x64 32x32 16x16" />'
+b'    <style>'
+b'        html {'
+b'            box-sizing: border-box;'
+b'            overflow: -moz-scrollbars-vertical;'
+b'            overflow-y: scroll;'
+b'        }'
+b''
+b'        *,'
+b'        *:before,'
+b'        *:after {'
+b'            box-sizing: inherit;'
+b'        }'
+b''
+b'        body {'
+b'            margin: 0;'
+b'            background: #fafafa;'
+b'        }'
+b'    </style>'
+b'</head>'
+b''
+```
+
+- Коли я запустив код код через консольку `CMD`, то результат був такий самий як і вище.
+
+- Я написав команду `pipenv shell`. Після чого у папці заспавнився файл `Pipfile`, а вигляд консольки змінився на такий `(Lab4-LqyyIgqt) D:\Labs\Labs 3.1\ООП\github\OOP\Lab4>`.
+  Здається теппер консолька буде запускати програмки у віртуальному серидовищі. 🤔
+
+- Коли я запустив той самий код у віртуальному серидовищі, мені пітон сказав що мені не хватає модуля `ModuleNotFoundError: No module named 'requests'`.
+  Проте мене це не зупинило. Я зробив `pip install requests`.
+  Після того все запустилсь, результат такий самий.
+
+- Я обрав бібліотеку `aiogram` вона створена для роботи з `Telegram API`, знайшов [документацію](https://docs.aiogram.dev/en/latest/).
+  У мене навіть є бот, якого я колись писав. Сьогодні зранку я вчився закидувати його на хостинг 😎.
+  [Ось він тут є, в сусідньому репозиторії.](https://github.com/Yuriy-Lapin/bot404)
+
+- Спробував я змінти інтерпритатор, але він у мене тільки 1:
+
+```
+Python 3.10.6 64-bit
+```
+
+### Робота зі змінними середовища
+
+- Я створив файл `.env` та запистик код з пикладу, мені вивело таку помилку:
+
+```
+KeyError: 'HELLO'
+```
+
+---
 
 ### Висновок:
 
-- :question: Що зроблено в роботі; :wavy_dash:
-- :question: Чи досягнуто мети роботи; :wavy_dash:
-- :question: Які нові знання отримано; :wavy_dash: Отримано знання про ООП, класи, методи, `магічні` функцфї, декоратори.
-- :question: Чи вдалось відповісти на всі питання задані в ході роботи; :wavy_dash: Вдалось, навіть на 4 запитання знайшлось логічне пояснення
-- :question: Чи вдалося виконати всі завдання; :wavy_dash: Взагалі без проблем )
-- :question: Чи виникли складності у виконанні завдання; :wavy_dash: Окей, проблеми були, але тільки в 4 запитанні )
+- :question: Що зроблено в роботі; :wavy_dash: Трошки побавились з бібліотеками та віртуальними серидовищами
+- :question: Чи досягнуто мети роботи; :wavy_dash: я гадаю що так )
+- :question: Які нові знання отримано; :wavy_dash: ну я раніше не знав про існування віртуальних серидовищ
+- :question: Чи вдалось відповісти на всі питання задані в ході роботи; :wavy_dash: так, можливо 🤔
+- :question: Чи вдалося виконати всі завдання; :wavy_dash: вдалось, хоча при рботі з venv деякі команди видавали помилку, можливо я не до кінця зрозумів синтаксис команди 🤔
+- :question: Чи виникли складності у виконанні завдання; :wavy_dash: ще й як виникли, минулий понеділок та вівторок без світла діже сильно вибив з привичного ритму життя. Аж тепер коли тривог не так багато, я зміг доробити це завдання.
 - :question: Чи подобається такий формат здачі роботи (Feedback); :wavy_dash: :sunglasses::+1:
-- :question: Побажання для покращення (Suggestions); :wavy_dash:
+- :question: Побажання для покращення (Suggestions); :wavy_dash: впринцині всьо норм )
